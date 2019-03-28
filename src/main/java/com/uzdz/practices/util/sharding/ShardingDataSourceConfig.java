@@ -15,6 +15,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Sharding-JDBC官网Document：
+ * https://shardingsphere.apache.org/document/legacy/3.x/document/cn/overview/
+ */
 @Configuration
 @EnableConfigurationProperties(ShardingMasterSlaveConfig.class)
 public class ShardingDataSourceConfig {

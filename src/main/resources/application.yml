@@ -1,0 +1,29 @@
+sharding:
+  jdbc:
+    data-sources:
+      ds_master:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/test_01
+        username: root
+        password: 123456
+      ds_slave:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/test_02
+        username: root
+        password: 123456
+    master-slave-rule:
+      name: ds_ms
+      master-data-source-name: ds_master
+      slave-data-source-names: ds_slave
+      load-balance-algorithm-type: round-robin
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  config: classpath:logback-spring.xml
+
+server:
+  port: 9090

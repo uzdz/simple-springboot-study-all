@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -17,7 +16,6 @@ import redis.clients.jedis.JedisPoolConfig;
  * @description:
  */
 @Configuration
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds= 3600, redisNamespace = "web:session")
 public class RedisConfig {
     private static Logger logger = LoggerFactory.getLogger(RedisConfig.class);
 

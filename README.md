@@ -5,4 +5,4 @@
 * Mybatis ORM框架实现数据库交互。(已完成)
 * Mybatis Generator自动代码生成。(已完成)
 * Sharding-JDBC实现读写分离。(已完成)
-* Redis与Jedis客户端实现缓存数据库
+* Redis实现缓存数据库

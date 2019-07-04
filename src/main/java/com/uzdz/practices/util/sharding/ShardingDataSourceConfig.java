@@ -23,8 +23,6 @@ import java.util.Map;
 @EnableConfigurationProperties(ShardingMasterSlaveConfig.class)
 public class ShardingDataSourceConfig {
 
-    private static final Logger log = LoggerFactory.getLogger(ShardingDataSourceConfig.class);
-
     @Autowired(required = false)
     private ShardingMasterSlaveConfig shardingMasterSlaveConfig;
 

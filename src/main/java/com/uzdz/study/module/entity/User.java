@@ -1,4 +1,4 @@
-package com.uzdz.practices.module.entity;
+package com.uzdz.study.module.entity;
 
 import java.io.Serializable;
 

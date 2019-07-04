@@ -1,4 +1,4 @@
-package com.uzdz.practices.util.sharding;
+package com.uzdz.study.util.sharding;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import io.shardingjdbc.core.api.config.MasterSlaveRuleConfiguration;

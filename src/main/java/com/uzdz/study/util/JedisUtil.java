@@ -1,4 +1,4 @@
-package com.uzdz.practices.util;
+package com.uzdz.study.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

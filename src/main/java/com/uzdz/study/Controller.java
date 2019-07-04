@@ -1,4 +1,4 @@
-package com.uzdz.practices;
+package com.uzdz.study;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

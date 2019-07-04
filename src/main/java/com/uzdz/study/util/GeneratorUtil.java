@@ -1,4 +1,4 @@
-package com.uzdz.practices.util;
+package com.uzdz.study.util;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;

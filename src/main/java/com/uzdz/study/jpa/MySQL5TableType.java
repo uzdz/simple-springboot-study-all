@@ -1,4 +1,4 @@
-package com.uzdz.practices.jpa;
+package com.uzdz.study.jpa;
 
 import org.hibernate.dialect.MySQL5Dialect;
 

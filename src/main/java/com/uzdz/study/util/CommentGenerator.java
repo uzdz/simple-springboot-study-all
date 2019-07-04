@@ -1,4 +1,4 @@
-package com.uzdz.practices.util;
+package com.uzdz.study.util;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;

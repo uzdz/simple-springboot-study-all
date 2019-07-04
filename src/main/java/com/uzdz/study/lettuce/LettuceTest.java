@@ -1,11 +1,9 @@
-package com.uzdz.practices.lettuce;
+package com.uzdz.study.lettuce;
 
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
-
-import java.math.BigDecimal;
 
 public class LettuceTest {
 

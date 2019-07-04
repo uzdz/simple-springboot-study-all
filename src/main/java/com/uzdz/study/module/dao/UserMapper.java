@@ -1,10 +1,8 @@
-package com.uzdz.practices.module.dao;
+package com.uzdz.study.module.dao;
 
-import com.uzdz.practices.module.entity.User;
+import com.uzdz.study.module.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 @Mapper
 public interface UserMapper {

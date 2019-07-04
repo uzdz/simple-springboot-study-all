@@ -1,4 +1,4 @@
-package com.uzdz.practices.protobuf;
+package com.uzdz.study.protobuf;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 

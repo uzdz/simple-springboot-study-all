@@ -1,13 +1,13 @@
-package com.uzdz.practices;
+package com.uzdz.study;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PracticesApplication {
+public class SimpleStudyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PracticesApplication.class, args);
+        SpringApplication.run(SimpleStudyApplication.class, args);
     }
 }
 

@@ -1,5 +1,7 @@
 package com.uzdz.study.config;
 
+import io.lettuce.core.RedisClient;
+import io.lettuce.core.RedisURI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +34,12 @@ public class RedisConfig {
                 new JedisPool(jedisPoolConfig, redisProperties.getHost(), redisProperties.getPort(), (int) redisProperties.getTimeout().getSeconds()):
                 new JedisPool(jedisPoolConfig, redisProperties.getHost(), redisProperties.getPort(), (int) redisProperties.getTimeout().getSeconds(), redisProperties.getPassword());
         return jedisPool;
+    }
+
+    @Bean
+    public RedisClient createClient() {
+        RedisURI redisURI = RedisURI.create("127.0.0.1", 6379);
+
+        return RedisClient.create(redisURI);
     }
 }

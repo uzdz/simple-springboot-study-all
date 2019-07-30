@@ -1,7 +1,7 @@
 package com.uzdz.study;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.uzdz.study.datasource.conf.DataSourceSelector;
+import com.easy.database.annotations.DataSourceSelector;
 import com.uzdz.study.module.dao.UserMapper;
 import com.uzdz.study.module.entity.User;
 import io.lettuce.core.RedisClient;
@@ -63,14 +63,11 @@ public class Controller {
         return info.get();
     }
 
-    @Trace
     @Transactional
     @DataSourceSelector(value = "member")
     @GetMapping("/get")
     public Object error(HttpServletRequest httpServletRequest) {
-        userMapper.updateUser(12, "dong");
-
-        throw new RuntimeException("eee");
+        return userMapper.selectById(12);
     }
 
     private boolean errorConsole() {

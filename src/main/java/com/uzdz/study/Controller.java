@@ -11,6 +11,7 @@ import org.apache.skywalking.apm.toolkit.trace.ActiveSpan;
 import org.apache.skywalking.apm.toolkit.trace.Trace;
 import org.apache.skywalking.apm.toolkit.trace.TraceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +45,6 @@ public class Controller {
 
         System.out.printf("shywalking trace id is : " + TraceContext.traceId());
 
-        errorConsole();
         return goodsCategory.get("uzdz");
     }
 
@@ -63,19 +63,12 @@ public class Controller {
         return info.get();
     }
 
-    @Transactional
-    @DataSourceSelector(value = "member")
-    @GetMapping("/get")
-    public Object error(HttpServletRequest httpServletRequest) {
-        return userMapper.selectById(12);
-    }
+    @DataSourceSelector(value = "user")
+    @GetMapping("/get1")
+    public Object error1(HttpServletRequest httpServletRequest) {
 
-    private boolean errorConsole() {
+        int uz = userMapper.updateUser(12, "uzdz");
 
-        Map a = null;
-
-        a.put("aaa", "111");
-
-        return true;
+        throw new RuntimeException("sadsad");
     }
 }

@@ -8,8 +8,8 @@
 
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select id, name
-    from user
-    where id = #{id,jdbcType=INTEGER}
+    from @env@_web_analytics
+    where id = 12
   </select>
 
   <update id="updateUser">

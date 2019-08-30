@@ -12,7 +12,7 @@ public interface UserMapper {
      * @param id
      * @return
      */
-    User selectById(@Param("id") Integer id);
+    User selectById(int a, String ab);
 
     /**
      * 修改用户名

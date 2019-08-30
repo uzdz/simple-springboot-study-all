@@ -11,6 +11,7 @@ import org.apache.skywalking.apm.toolkit.trace.ActiveSpan;
 import org.apache.skywalking.apm.toolkit.trace.Trace;
 import org.apache.skywalking.apm.toolkit.trace.TraceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,9 +67,8 @@ public class Controller {
     @DataSourceSelector(value = "user")
     @GetMapping("/get1")
     public Object error1(HttpServletRequest httpServletRequest) {
+        User user = userMapper.selectById(12,"abc");
 
-        int uz = userMapper.updateUser(12, "uzdz");
-
-        throw new RuntimeException("sadsad");
+        return "success";
     }
 }

@@ -10,6 +10,9 @@ server:
   port: 9090
 
 spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/study
   cloud:
     sentinel:
       transport:

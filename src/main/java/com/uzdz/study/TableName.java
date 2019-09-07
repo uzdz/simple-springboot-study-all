@@ -19,7 +19,6 @@ import java.util.Properties;
 /**
  * @author uzdz
  */
-@Component
 public class TableName  implements InitializingBean {
 
     @Autowired

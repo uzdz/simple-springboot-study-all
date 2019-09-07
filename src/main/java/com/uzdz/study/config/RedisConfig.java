@@ -1,10 +1,13 @@
 package com.uzdz.study.config;
 
+import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,11 +21,15 @@ import redis.clients.jedis.JedisPoolConfig;
  * @description:
  */
 @Configuration
+@EnableApolloConfig({"ccc.yaml"})
 public class RedisConfig {
     private static Logger logger = LoggerFactory.getLogger(RedisConfig.class);
 
     @Autowired
     private RedisProperties redisProperties;
+
+    @Value("${ab:unknowe}")
+    private String ho;
 
     @Bean
     public JedisPool jedisPool() {

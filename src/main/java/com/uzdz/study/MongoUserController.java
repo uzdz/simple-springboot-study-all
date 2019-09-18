@@ -23,7 +23,7 @@ public class MongoUserController {
 
     private static Logger logger = LoggerFactory.getLogger(MongoUserController.class);
 
-    @Autowired
+    @Autowired(required = false)
     MongoUserRepository mongoUserRepository;
 
     @GetMapping("/findAll")

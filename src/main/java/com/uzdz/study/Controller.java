@@ -8,6 +8,7 @@ import com.ctrip.framework.apollo.model.ConfigChange;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.easy.database.annotations.DataSourceSelector;
 import com.uzdz.study.module.dao.UserMapper;
+import com.uzdz.study.module.entity.Root;
 import com.uzdz.study.module.entity.User;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisFuture;
@@ -33,6 +34,7 @@ public class Controller {
 
     @Autowired(required = false)
     private RedisClient redisClient;
+
     public static Map<String,String> goodsCategory= new ConcurrentHashMap<>();
 
     @Autowired
@@ -44,7 +46,7 @@ public class Controller {
     @Trace
     @GetMapping("/hello/{value1}")
     public String hello(@PathVariable(value = "value1") String name) {
-
+        Root root = new Root();
         ActiveSpan.info("this is shywalking info");
 
         ActiveSpan.tag("this is shywalking tag", "uzdz");

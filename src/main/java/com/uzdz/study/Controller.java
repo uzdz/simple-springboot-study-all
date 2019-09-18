@@ -77,7 +77,7 @@ public class Controller {
     @DataSourceSelector(value = "user")
     @GetMapping("/get1")
     public Object error1(HttpServletRequest httpServletRequest) {
-        User user = userMapper.selectById(12,"abc");
+        User user = userMapper.selectById(12);
 
         return "success";
     }

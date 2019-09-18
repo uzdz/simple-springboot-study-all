@@ -1,8 +1,20 @@
 package com.uzdz.study.module.entity;
 
-import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class User implements Serializable {
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class User {
     /**
      * 主键id
      */
@@ -13,29 +25,9 @@ public class User implements Serializable {
      */
     private String name;
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "MongoUser{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

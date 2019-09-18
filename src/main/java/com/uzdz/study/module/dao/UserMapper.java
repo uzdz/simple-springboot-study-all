@@ -3,8 +3,10 @@ package com.uzdz.study.module.dao;
 import com.uzdz.study.module.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 @Mapper
+@Component
 public interface UserMapper {
 
     /**
@@ -12,7 +14,7 @@ public interface UserMapper {
      * @param id
      * @return
      */
-    User selectById(int a, String ab);
+    User selectById(int id);
 
     /**
      * 修改用户名
@@ -21,4 +23,11 @@ public interface UserMapper {
      * @return
      */
     int updateUser(@Param("id")Integer id, @Param("name") String name);
+
+    /**
+     * 插入用户
+     * @param user
+     * @return
+     */
+    int insert(User user);
 }

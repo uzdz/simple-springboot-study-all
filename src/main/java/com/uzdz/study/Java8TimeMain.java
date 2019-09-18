@@ -1,5 +1,6 @@
 package com.uzdz.study;
 
+import com.uzdz.study.jpa.UserRepository;
 import com.uzdz.study.module.dao.UserMapper;
 import com.uzdz.study.module.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,23 @@ public class Java8TimeMain {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/save")
     public String save() {
 
         int uzdz = userMapper.insert(User.builder().name("uzdz").createTime(LocalDateTime.now()).build());
 
         return "success - " + uzdz;
+    }
+
+    @GetMapping("/jpaSave")
+    public String jpaSave() {
+
+        User dongzhen = userRepository.save(User.builder().name("dongzhen").createTime(LocalDateTime.now()).build());
+
+        return "success - " + dongzhen;
     }
 
     public static void main(String[] args) {

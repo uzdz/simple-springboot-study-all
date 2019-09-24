@@ -31,6 +31,10 @@ spring:
         max-idle: 8
         min-idle: 0
     timeout: 600s
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: mygroup
 
 geek:
   multiple:

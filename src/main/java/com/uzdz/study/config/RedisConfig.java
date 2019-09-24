@@ -1,7 +1,5 @@
 package com.uzdz.study.config;
 
-import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
-import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
 import org.slf4j.Logger;
@@ -21,7 +19,6 @@ import redis.clients.jedis.JedisPoolConfig;
  * @description:
  */
 @Configuration
-@EnableApolloConfig({"ccc.yaml"})
 public class RedisConfig {
     private static Logger logger = LoggerFactory.getLogger(RedisConfig.class);
 

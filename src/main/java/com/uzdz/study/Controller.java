@@ -1,11 +1,11 @@
 package com.uzdz.study;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.ctrip.framework.apollo.Config;
-import com.ctrip.framework.apollo.ConfigChangeListener;
-import com.ctrip.framework.apollo.ConfigService;
-import com.ctrip.framework.apollo.model.ConfigChange;
-import com.ctrip.framework.apollo.model.ConfigChangeEvent;
+//import com.ctrip.framework.apollo.Config;
+//import com.ctrip.framework.apollo.ConfigChangeListener;
+//import com.ctrip.framework.apollo.ConfigService;
+//import com.ctrip.framework.apollo.model.ConfigChange;
+//import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.easy.database.annotations.DataSourceSelector;
 import com.uzdz.study.module.dao.UserMapper;
 import com.uzdz.study.module.entity.Root;
@@ -82,27 +82,27 @@ public class Controller {
         return "success";
     }
 
-    @GetMapping("/apollo")
-    public Object apollo() {
-        Config config = ConfigService.getAppConfig();
-
-        config.addChangeListener(new ConfigChangeListener() {
-            @Override
-            public void onChange(ConfigChangeEvent changeEvent) {
-                System.out.println("Changes for namespace " + changeEvent.getNamespace());
-                for (String key : changeEvent.changedKeys()) {
-                    ConfigChange change = changeEvent.getChange(key);
-                    System.out.println(String.format("Found change - key: %s, oldValue: %s, newValue: %s, changeType: %s", change.getPropertyName(), change.getOldValue(), change.getNewValue(), change.getChangeType()));
-                }
-            }
-        });
-
-        String someKey = "abc.abc";
-        String someDefaultValue = "unknown";
-        String value = config.getProperty(someKey, someDefaultValue);
-
-        return value;
-    }
+//    @GetMapping("/apollo")
+//    public Object apollo() {
+//        Config config = ConfigService.getAppConfig();
+//
+//        config.addChangeListener(new ConfigChangeListener() {
+//            @Override
+//            public void onChange(ConfigChangeEvent changeEvent) {
+//                System.out.println("Changes for namespace " + changeEvent.getNamespace());
+//                for (String key : changeEvent.changedKeys()) {
+//                    ConfigChange change = changeEvent.getChange(key);
+//                    System.out.println(String.format("Found change - key: %s, oldValue: %s, newValue: %s, changeType: %s", change.getPropertyName(), change.getOldValue(), change.getNewValue(), change.getChangeType()));
+//                }
+//            }
+//        });
+//
+//        String someKey = "abc.abc";
+//        String someDefaultValue = "unknown";
+//        String value = config.getProperty(someKey, someDefaultValue);
+//
+//        return value;
+//    }
 
     @GetMapping("/getM")
     public String getM() {

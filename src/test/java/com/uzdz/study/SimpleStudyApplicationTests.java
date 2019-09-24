@@ -1,6 +1,7 @@
 package com.uzdz.study;
 
 import com.uzdz.study.jpa.UserRepository;
+import com.uzdz.study.kafka.KafkaController;
 import com.uzdz.study.module.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,11 +20,14 @@ public class SimpleStudyApplicationTests {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private KafkaController kafkaController;
+
     @Test
     public void contextLoads() {
-        User dongzhen = userRepository.save(User.builder().name("dongzhe111zzn").createTime(LocalDateTime.now()).build());
+        String uzdz = kafkaController.send("uzdz");
 
-        System.out.println(dongzhen);
+        System.out.println(uzdz);
     }
 
 }

@@ -2,12 +2,10 @@ package com.uzdz.study.util;
 
 import java.time.Duration;
 import java.time.LocalTime;
-import java.time.temporal.TemporalField;
 import java.util.Random;
 
 /**
- * {@link } for .
- *
+ * 随机数类
  * @author uzdz
  * @date: 2019/7/11 14:56
  * @since 0.1.0

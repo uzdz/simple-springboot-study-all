@@ -3,9 +3,11 @@ package com.uzdz.study;
 import com.easy.database.annotations.EnableMultipleDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
-@EnableMultipleDataSource
-@SpringBootApplication
+@EnableMultipleDataSource(startup = false)
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class, MongoAutoConfiguration.class})
 public class SimpleStudyApplication {
 
     public static void main(String[] args) {

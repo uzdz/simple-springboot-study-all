@@ -1,4 +1,4 @@
-package com.uzdz.study;
+package com.uzdz.study.test;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;

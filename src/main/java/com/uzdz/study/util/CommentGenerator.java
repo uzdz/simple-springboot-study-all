@@ -19,7 +19,7 @@ import java.util.Properties;
 import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 
 /**
- * 描述：
+ * Mybatis自定义注释
  * @since 1.9.10
  * @version 1.9.10
  * @作者：uzdz

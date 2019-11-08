@@ -1,4 +1,4 @@
-package com.uzdz.study;
+package com.uzdz.study.test;
 
 import com.uzdz.study.jpa.UserRepository;
 import com.uzdz.study.module.dao.UserMapper;
@@ -7,21 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.time.*;
-import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalField;
 import java.util.Date;
 
 @RestController
 @RequestMapping("/java8/date")
 public class Java8TimeMain {
 
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
 
-    @Autowired
+    @Autowired(required = false)
     private UserRepository userRepository;
 
     @GetMapping("/save")

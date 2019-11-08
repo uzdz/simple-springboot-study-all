@@ -1,4 +1,4 @@
-package com.uzdz.study;
+package com.uzdz.study.test;
 
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;

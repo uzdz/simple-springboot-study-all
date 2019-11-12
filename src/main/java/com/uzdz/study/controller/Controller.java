@@ -15,6 +15,7 @@ import org.apache.skywalking.apm.toolkit.trace.Trace;
 import org.apache.skywalking.apm.toolkit.trace.TraceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ import java.net.URLEncoder;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 @RestController
 public class Controller {
@@ -40,6 +42,9 @@ public class Controller {
 
     @Value("${geek.name}")
     private String name;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Trace
     @GetMapping("/hello/{value1}")
@@ -136,5 +141,14 @@ public class Controller {
             map.put("message", "下载文件失败" + e.getMessage());
             response.getWriter().println(JSON.toJSONString(map));
         }
+    }
+
+    @GetMapping("jdbc")
+    public void jdbc() {
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList("select id as '1', name as '2', create_time as '3' from t_user");
+
+        List<Object> k = maps.stream().map((data) -> data.get("c")).collect(Collectors.toList());
+
+        System.out.println(k.get(0));
     }
 }

@@ -3,6 +3,7 @@ package com.uzdz.study.controller;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Maps;
 import com.uzdz.study.controller.excel.DemoData;
 import com.uzdz.study.module.dao.UserMapper;
 import com.uzdz.study.module.entity.Root;
@@ -150,5 +151,39 @@ public class Controller {
         List<Object> k = maps.stream().map((data) -> data.get("c")).collect(Collectors.toList());
 
         System.out.println(k.get(0));
+    }
+
+    public static void main(String[] args) {
+        String str = "{\"99\":\"5\",\"0\":\"1\",\"10\":\"2\"}";
+
+        Map<String, Integer> map = JSON.parseObject(str, Map.class);
+
+        Map<String, Integer> stringIntegerMap = sortByValue(map, false);
+
+        List<String> data = new ArrayList<>();
+        for(Map.Entry<String, Integer> entry : stringIntegerMap.entrySet()){
+            data.add(entry.getKey());
+        }
+
+        data.stream().forEach(System.out::println);
+    }
+
+    /**
+     * 根据map的value排序
+     *
+     * @param map 待排序的map
+     * @param isDesc 是否降序，true：降序，false：升序
+     * @return 排序好的map
+     */
+    public static  <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map, boolean isDesc) {
+        Map<K, V> result = Maps.newLinkedHashMap();
+        if (isDesc) {
+            map.entrySet().stream().sorted(Map.Entry.<K, V>comparingByValue().reversed())
+                    .forEach(e -> result.put(e.getKey(), e.getValue()));
+        } else {
+            map.entrySet().stream().sorted(Map.Entry.<K, V>comparingByValue())
+                    .forEachOrdered(e -> result.put(e.getKey(), e.getValue()));
+        }
+        return result;
     }
 }

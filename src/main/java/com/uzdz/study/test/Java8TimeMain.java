@@ -2,6 +2,7 @@ package com.uzdz.study.test;
 
 import com.uzdz.study.jpa.UserRepository;
 import com.uzdz.study.module.dao.UserMapper;
+import com.uzdz.study.module.dto.UserDto;
 import com.uzdz.study.module.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/java8/date")
@@ -35,6 +37,14 @@ public class Java8TimeMain {
         User dongzhen = userRepository.save(User.builder().name("dongzhen").createTime(LocalDateTime.now()).build());
 
         return "success - " + dongzhen;
+    }
+
+    @GetMapping("/user")
+    public String user() {
+
+        List<UserDto> userDtos = userRepository.selectByCod();
+
+        return "success - " + userDtos;
     }
 
     public static void main(String[] args) {

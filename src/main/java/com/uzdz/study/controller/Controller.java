@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
+import com.uzdz.study.config.MessageConstant;
 import com.uzdz.study.controller.excel.DemoData;
 import com.uzdz.study.module.dao.UserMapper;
 import com.uzdz.study.module.entity.Root;
@@ -44,8 +45,20 @@ public class Controller {
     @Value("${geek.name}")
     private String name;
 
-    @Autowired
+    @Autowired(required = false)
     private JdbcTemplate jdbcTemplate;
+
+    @GetMapping("/test")
+    public String test() {
+        Map<Integer, String> msg = MessageConstant.msg;
+        Map<Integer, String> msg1 = MessageConstant.msg;
+
+        if (msg == msg1) {
+            return "success";
+        }
+
+        return "fail";
+    }
 
     @Trace
     @GetMapping("/hello/{value1}")

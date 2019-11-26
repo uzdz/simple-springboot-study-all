@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecifi
 
     @Query("select new com.uzdz.study.module.dto.UserDto(a.name) from User as a ")
     List<UserDto> selectByCod();
+
+    @Query("select name from User ")
+    List<UserDto> selectByCod3();
 }

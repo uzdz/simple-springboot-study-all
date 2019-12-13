@@ -12,9 +12,6 @@ import com.uzdz.study.module.entity.User;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisFuture;
 import io.lettuce.core.api.async.RedisAsyncCommands;
-import org.apache.skywalking.apm.toolkit.trace.ActiveSpan;
-import org.apache.skywalking.apm.toolkit.trace.Trace;
-import org.apache.skywalking.apm.toolkit.trace.TraceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -58,22 +55,6 @@ public class Controller {
         }
 
         return "fail";
-    }
-
-    @Trace
-    @GetMapping("/hello/{value1}")
-    public String hello(@PathVariable(value = "value1") String name) {
-        Root root = new Root();
-        ActiveSpan.info("this is shywalking info");
-
-        ActiveSpan.tag("this is shywalking tag", "uzdz");
-        System.out.println(goodsCategory.get("uzdz"));
-
-        goodsCategory.put("uzdz", name);
-
-        System.out.printf("shywalking trace id is : " + TraceContext.traceId());
-
-        return goodsCategory.get("uzdz");
     }
 
     @SentinelResource("redisResouce")

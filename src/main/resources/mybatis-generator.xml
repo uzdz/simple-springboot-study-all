@@ -27,7 +27,7 @@
 
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/test_01?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;allowMultiQueries=true"
+                        connectionURL="jdbc:mysql://localhost:3306/demo?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;allowMultiQueries=true"
                         userId="root" password="123456" />
 
         <javaTypeResolver>
@@ -35,7 +35,7 @@
         </javaTypeResolver>
 
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetPackage="com.uzdz.study.module.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.uzdz.study.tk.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="false"/>
         </javaModelGenerator>
@@ -47,12 +47,12 @@
         </sqlMapGenerator>
 
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.uzdz.study.module.dao" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.uzdz.study.tk.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="user" enableUpdateByPrimaryKey="true" enableSelectByPrimaryKey="true"
+        <table tableName="t_bbg_order" enableUpdateByPrimaryKey="true" enableSelectByPrimaryKey="true"
                enableInsert="true" enableCountByExample="false" enableSelectByExample="false"
                enableDeleteByPrimaryKey="false" enableUpdateByExample="false" enableDeleteByExample="false">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>

@@ -1,54 +1,80 @@
-//package com.uzdz.study.protobuf;
-//
-//import com.google.protobuf.InvalidProtocolBufferException;
-//
-//import java.io.ByteArrayInputStream;
-//import java.io.ByteArrayOutputStream;
-//import java.io.IOException;
-//
-///**
-// * @ClassName: ProtoTest
-// * @Description: ProtoBuf 测试
-// * @Author: Jet.Chen
-// * @Date: 2019/5/8 9:55
-// * @Version: 1.0
-// **/
-//public class ProtoTest {
-//
-//    public static void main(String[] args) {
-//        try {
-//            // 按照定义的数据结构，创建一个Person
-//            PersonTestProtos.Person.Builder personBuilder = PersonTestProtos.Person.newBuilder();
-//            personBuilder.setId(1);
-//            personBuilder.setName("asdsa啊哈哈哈");
-//            PersonTestProtos.Person xxg = personBuilder.build();
-//
-//            // 将数据写到输出流，如网络输出流，这里就用ByteArrayOutputStream来代替
-//            ByteArrayOutputStream output = new ByteArrayOutputStream();
-//            xxg.writeTo(output);
-//
-//            // -------------- 分割线：上面是发送方，将数据序列化后发送 ---------------
-//
-//            byte[] byteArray = output.toByteArray();
-//
-//            String a = "sssbc";
-//            byte[] byteArra1y = a.getBytes();
-//            // -------------- 分割线：下面是接收方，将数据接收后反序列化 ---------------
-//
-//            // 接收到流并读取，如网络输入流，这里用ByteArrayInputStream来代替
-//            ByteArrayInputStream input = new ByteArrayInputStream(byteArra1y);
-//
-//            // 反序列化
-//            PersonTestProtos.Person xxg2 = PersonTestProtos.Person.parseFrom(input);
-//            System.out.println("ID:" + xxg2.getId());
-//            System.out.println("name:" + xxg2.getName());
-//
-//        } catch (InvalidProtocolBufferException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//
-//}
+package com.uzdz.study.protobuf;
+
+import com.google.protobuf.InvalidProtocolBufferException;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+/**
+ * @ClassName: ProtoTest
+ * @Description: ProtoBuf 测试
+ * @Author: Jet.Chen
+ * @Date: 2019/5/8 9:55
+ * @Version: 1.0
+ **/
+public class ProtoTest {
+
+    public static void main(String[] args) {
+        try {
+            /** Step1：生成 personTest 对象 */
+            // personTest 构造器
+            PersonTestProtos.Person.Builder personBuilder = PersonTestProtos.Person.newBuilder();
+            // personTest 赋值
+            personBuilder.setName("Jet Chen");
+            personBuilder.setEmail("ckk505214992@gmail.com");
+            personBuilder.setSex(PersonTestProtos.Person.Sex.MALE);
+            personBuilder.putTags("go", "golang");
+
+            // 内部的 PhoneNumber 构造器
+            PersonTestProtos.Person.PhoneNumber.Builder phoneNumberBuilder = PersonTestProtos.Person.PhoneNumber.newBuilder();
+            // PhoneNumber 赋值
+            phoneNumberBuilder.setType(PersonTestProtos.Person.PhoneNumber.PhoneType.MOBILE);
+            phoneNumberBuilder.setNumber("17717037257");
+            // personTest 设置 PhoneNumber
+            personBuilder.addPhone(phoneNumberBuilder);
+
+            // 生成 personTest 对象
+            PersonTestProtos.Person personTest = personBuilder.build();
+
+            /** Step2：序列化和反序列化 */
+            // 方式一 byte[]：
+            // 序列化
+//            byte[] bytes = personTest.toByteArray();
+            // 反序列化
+//            PersonTestProtos.PersonTest personTestResult = PersonTestProtos.PersonTest.parseFrom(bytes);
+//            System.out.println(String.format("反序列化得到的信息，姓名：%s，性别：%d，手机号：%s", personTestResult.getName(), personTest.getSexValue(), personTest.getPhone(0).getNumber()));
+
+
+
+            // 方式二 ByteString：
+            // 序列化
+//            ByteString byteString = personTest.toByteString();
+//            System.out.println(byteString.toString());
+            // 反序列化
+//            PersonTestProtos.PersonTest personTestResult = PersonTestProtos.PersonTest.parseFrom(byteString);
+//            System.out.println(String.format("反序列化得到的信息，姓名：%s，性别：%d，手机号：%s", personTestResult.getName(), personTest.getSexValue(), personTest.getPhone(0).getNumber()));
+
+
+
+            // 方式三 InputStream
+            // 粘包,将一个或者多个protobuf 对象字节写入 stream
+            // 序列化
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            personTest.writeDelimitedTo(byteArrayOutputStream);
+
+            // 反序列化，从 steam 中读取一个或者多个 protobuf 字节对象
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+            PersonTestProtos.Person personTestResult = PersonTestProtos.Person.parseDelimitedFrom(byteArrayInputStream);
+            System.out.println(String.format("反序列化得到的信息，姓名：%s，性别：%d，手机号：%s, Tags: %s",
+                    personTestResult.getName(), personTest.getSexValue(), personTest.getPhone(0).getNumber(), personTest.getTagsMap().get("go")));
+
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}

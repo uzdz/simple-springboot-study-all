@@ -10,6 +10,8 @@ server:
   port: 9090
 
 spring:
+  messages:
+    basename: static/i8n/messages #相对路径 开头请勿添加斜杠
   jpa:
     generate-ddl: false
     show-sql: true
@@ -85,3 +87,6 @@ phoenix:
       connection-timeout: 30000
       # 连接测试sql 这个地方需要根据数据库方言差异而配置 例如 oracle 就应该写成  select 1 from dual
       connection-test-query: SELECT 1
+
+elasticsearch:
+  ip: 127.0.0.1:9201

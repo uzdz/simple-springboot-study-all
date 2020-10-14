@@ -8,25 +8,35 @@ import com.uzdz.study.config.MessageConstant;
 import com.uzdz.study.controller.excel.Demo1Data;
 import com.uzdz.study.controller.excel.DemoData;
 import com.uzdz.study.module.dao.UserMapper;
-import com.uzdz.study.module.entity.Root;
 import com.uzdz.study.module.entity.User;
+import com.uzdz.study.protobuf.ProtoTest;
+import com.uzdz.study.util.MessageUtils;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisFuture;
 import io.lettuce.core.api.async.RedisAsyncCommands;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.CreateIndexRequest;
+import org.elasticsearch.client.indices.CreateIndexResponse;
+import org.elasticsearch.client.indices.GetIndexRequest;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 @RestController
@@ -73,11 +83,9 @@ public class Controller {
         return info.get();
     }
 
-    @GetMapping("/get1")
+    @GetMapping("/getI18n")
     public Object error1(HttpServletRequest httpServletRequest) {
-        User user = userMapper.selectById(12);
-
-        return "success";
+        return MessageUtils.get("user.title");
     }
 
 //    @GetMapping("/apollo")
@@ -154,19 +162,60 @@ public class Controller {
         System.out.println(k.get(0));
     }
 
-    public static void main(String[] args) {
-        String str = "{\"99\":\"5\",\"0\":\"1\",\"10\":\"2\"}";
+    public static void main(String[] args) throws InterruptedException {
 
-        Map<String, Integer> map = JSON.parseObject(str, Map.class);
+        int[] stamp = new int[1];
 
-        Map<String, Integer> stringIntegerMap = sortByValue(map, false);
+        System.out.println(stamp[0]);
+//        String str = "{\"99\":\"5\",\"0\":\"1\",\"10\":\"2\"}";
+//
+//        Map<String, Integer> map = JSON.parseObject(str, Map.class);
+//
+//        Map<String, Integer> stringIntegerMap = sortByValue(map, false);
+//
+//        List<String> data = new ArrayList<>();
+//        for(Map.Entry<String, Integer> entry : stringIntegerMap.entrySet()){
+//            data.add(entry.getKey());
+//        }
+//
+//        data.stream().forEach(System.out::println);
+//        ProtoTest protoTest = new ProtoTest();
+//
+//
+//        Thread a = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                synchronized (protoTest) {
+//                    System.out.println("进入了代码块");
+//
+//                    synchronized (protoTest) {
+//                        System.out.println("我有货渠道");
+//                    }
+//
+//                    try {
+//                        System.out.println("阻塞");
+//                        protoTest.wait();
+//                    } catch (Exception e) {
+//                        System.out.println("异常");
+//                        e.printStackTrace();
+//                    }
+//
+//                    System.out.println("通过");
+//                }
+//
+//                System.out.println("hhheheheh");
+//            }
+//        });
+//
+//        a.start();
+//
+//        TimeUnit.SECONDS.sleep(3);
+//
+//        a.interrupt();
+//
+//        System.out.println("gogogog");
 
-        List<String> data = new ArrayList<>();
-        for(Map.Entry<String, Integer> entry : stringIntegerMap.entrySet()){
-            data.add(entry.getKey());
-        }
-
-        data.stream().forEach(System.out::println);
     }
 
     /**
@@ -186,5 +235,19 @@ public class Controller {
                     .forEachOrdered(e -> result.put(e.getKey(), e.getValue()));
         }
         return result;
+    }
+
+
+    @Autowired
+    RestHighLevelClient highLevelClient;
+
+    /**
+     * @Description 查看索引是否存在
+     * @date 2019/11/19 11:07
+     */
+    @RequestMapping(value = "/checkIndex",method = RequestMethod.GET)
+    public Boolean createIndex(@RequestParam("indexName") String indexName) throws Exception {
+
+        return highLevelClient.indices().exists(new GetIndexRequest(indexName), RequestOptions.DEFAULT);
     }
 }

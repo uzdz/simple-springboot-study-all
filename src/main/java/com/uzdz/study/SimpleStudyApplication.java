@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+
+import java.io.FileNotFoundException;
 //import tk.mybatis.spring.annotation.MapperScan;
 
 @EnableMultipleDataSource(startup = false)
@@ -13,7 +15,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 @SpringBootApplication(exclude={MongoAutoConfiguration.class})
 @ServletComponentScan
 //@MapperScan("com.uzdz.study.*.mapper")
-public class SimpleStudyApplication {
+public class SimpleStudyApplication extends  Thread {
 
     public static void main(String[] args) {
         SpringApplication.run(SimpleStudyApplication.class, args);

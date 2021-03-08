@@ -8,6 +8,7 @@ public class BeanInitApplication {
 
     @Bean(initMethod = "initMethod", destroyMethod = "destroyMethod")
     public BeanInitConfig beanInitConfig() {
+        System.out.println("BeanInitConfig init");
         return new BeanInitConfig();
     }
 }

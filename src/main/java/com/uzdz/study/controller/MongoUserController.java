@@ -1,5 +1,5 @@
-package com.uzdz.study.controller;
-
+//package com.uzdz.study.controller;
+//
 //import com.uzdz.study.mongodb.domain.MongoUser;
 //import com.uzdz.study.mongodb.repository.MongoUserRepository;
 //import org.slf4j.Logger;
@@ -10,9 +10,7 @@ package com.uzdz.study.controller;
 //import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PutMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RestController;
 //
 //import java.util.List;
 //import java.util.Optional;
@@ -23,7 +21,7 @@ package com.uzdz.study.controller;
 //
 //    private static Logger logger = LoggerFactory.getLogger(MongoUserController.class);
 //
-//    @Autowired(required = false)
+//    @Autowired
 //    MongoUserRepository mongoUserRepository;
 //
 //    @GetMapping("/findAll")

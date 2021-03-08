@@ -1,6 +1,6 @@
-package com.uzdz.study.mongodb.repository;
-
-
+//package com.uzdz.study.mongodb.repository;
+//
+//
 //import java.util.List;
 //
 //import com.uzdz.study.mongodb.domain.MongoUser;

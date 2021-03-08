@@ -7,9 +7,23 @@ logging:
   config: classpath:logback-spring.xml
 
 server:
-  port: 9090
+  port: 9092
 
 spring:
+  application:
+    name: uzdz
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      datasource:
+        ds:
+          nacos:
+            server-addr: 10.16.154.176:31148
+            dataId: uzdz-flow-rules
+            groupId: SENTINEL_GROUP
+            namespace: local
+            rule-type: flow
   messages:
     basename: static/i8n/messages #相对路径 开头请勿添加斜杠
   jpa:
@@ -17,22 +31,15 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
-  datasource:
-    jdbcUrl: jdbc:mysql://localhost:3306/demo?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
-    username: root
-    password: 123456
-    type: com.alibaba.druid.pool.DruidDataSource
-    driverClassName: com.mysql.jdbc.Driver
+#  datasource:
+#    jdbcUrl: jdbc:mysql://localhost:3306/demo?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: 123456
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driverClassName: com.mysql.jdbc.Driver
   data:
     mongodb:
       uri: mongodb://localhost:27017/study
-  cloud:
-    sentinel:
-      transport:
-        dashboard: localhost:8899
-        port: 7080
-  application:
-    name: simple-springboot-study-all
   redis:
     database: 0
     port: 6379
@@ -90,3 +97,7 @@ phoenix:
 
 elasticsearch:
   ip: 127.0.0.1:9201
+
+qiyee:
+  rocketmq:
+    isEnable: false

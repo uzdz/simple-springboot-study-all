@@ -1,5 +1,9 @@
 package com.uzdz.study.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import io.lettuce.core.RedisClient;
+import io.lettuce.core.RedisFuture;
+import io.lettuce.core.api.async.RedisAsyncCommands;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.CannotAcquireLockException;
 import org.springframework.integration.redis.util.RedisLockRegistry;
@@ -8,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
@@ -17,6 +22,24 @@ public class RedisController {
 
     @Autowired
     RedisLockRegistry redisLockRegistry;
+
+    @Autowired(required = false)
+    private RedisClient redisClient;
+
+    @SentinelResource("redisResouce")
+    @GetMapping("/redisInfo")
+    public String getRedisInfo() throws ExecutionException, InterruptedException {
+
+        if (redisClient == null) {
+            return "failed start redis client";
+        }
+
+        RedisAsyncCommands<String, String> async = redisClient.connect().async();
+
+        RedisFuture<String> info = async.info();
+
+        return info.get();
+    }
 
     @GetMapping("/lock")
     public String tryLock() {

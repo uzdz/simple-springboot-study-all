@@ -27,9 +27,6 @@ public class RedisConfig {
     @Autowired
     private RedisProperties redisProperties;
 
-    @Value("${ab:unknowe}")
-    private String ho;
-
     @Bean
     public JedisPool jedisPool() {
         logger.info("###【redis注入成功】[host/port] => {}, {}", redisProperties.getHost(), redisProperties.getPort());

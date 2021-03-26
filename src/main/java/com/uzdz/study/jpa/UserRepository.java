@@ -14,7 +14,7 @@ public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecifi
     @Query("select new com.uzdz.study.module.dto.UserDto(a.name) from User as a ")
     List<UserDto> selectByCod();
 
-    @Query("select new User(a.id, a.name, a.createTime) from User as a where a.id = 11")
+    @Query("select new User(a.id, a.name, a.like, a.createTime) from User as a where a.id = 11")
     User selectByUserByIdEq1();
 
     @Query("select name from User ")

@@ -14,8 +14,6 @@ public class SimpleCanalClientExample {
 
     public static void main(String args[]) {
 
-
-
         // 创建链接
         CanalConnector connector = CanalConnectors.newClusterConnector("127.0.0.1:2181/pre", "db_pre_user", "canal", "canal");
         int batchSize = 1000;

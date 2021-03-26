@@ -27,16 +27,19 @@ spring:
   messages:
     basename: static/i8n/messages #相对路径 开头请勿添加斜杠
   jpa:
-    generate-ddl: false
-    show-sql: true
     hibernate:
-      ddl-auto: none
-#  datasource:
-#    jdbcUrl: jdbc:mysql://localhost:3306/demo?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
-#    username: root
-#    password: 123456
-#    type: com.alibaba.druid.pool.DruidDataSource
-#    driverClassName: com.mysql.jdbc.Driver
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    jdbcUrl: jdbc:mysql://localhost:3306/demo?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
   data:
     mongodb:
       uri: mongodb://localhost:27017/study

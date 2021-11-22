@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.cluster.flow.rule.ClusterFlowRuleManager;
 import com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource;
 import com.easy.database.annotations.EnableMultipleDataSource;
 import org.apache.shardingsphere.shardingjdbc.spring.boot.SpringBootConfiguration;
+import org.junit.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.MDC;
 import org.springframework.boot.SpringApplication;
